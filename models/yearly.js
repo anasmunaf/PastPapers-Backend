@@ -6,28 +6,27 @@ const annualSchema = mongoose.Schema({
   subject: {
     type: String,
     required: [true, "Subject entry is required"],
-    enum: ["math", "physics", "chemistry"],
+    enum: ["Maths", "Physics", "Chemistry"],
   },
   year: {
-    type: Number,
+    type: String,
     required: [true, "Subject entry is required"],
-    min: 15,
-    max: 20,
+    enum: ["2015", "2016", "2017", "2018", "2019", "2020"],
   },
   month: {
     type: String,
     required: [true, "month entry is required"],
-    enum: ["s", "w"],
+    enum: ["Summer", "Winter"],
   },
   category: {
     type: String,
     required: [true, "category entry is required"],
-    enum: ["qp", "ms"],
+    enum: ["QS", "MS"],
   },
   paper: {
-    type: Number,
+    type: String,
     required: [true, "paper entry is required"],
-    enum: [1, 2],
+    enum: ["P1", "P2"],
   },
   pdf: {
     type: Object,

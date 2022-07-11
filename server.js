@@ -5,7 +5,6 @@ const dotenv = require("dotenv");
 const ConnectDB = require("./config/db");
 const AnnualRoutes = require("./routes/yearly");
 const cors = require("cors");
-const fileUploader = require("express-fileupload");
 
 dotenv.config({ path: "./config/.env" });
 ConnectDB();

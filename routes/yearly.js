@@ -9,6 +9,7 @@ const {
   deleteYear,
   getYearById,
 } = require("../controllers/yearly");
+const { getPdfById } = require("../controllers/pdf");
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 // const fileStorageEngine = require("../utils/multer");
@@ -20,5 +21,5 @@ AnnualRoutes.route("/:id")
   .get(getYearById)
   .put(upload.single("pdf"), updateYear)
   .delete(deleteYear);
-
+AnnualRoutes.route("/pdf/:id").get(getPdfById);
 module.exports = AnnualRoutes;

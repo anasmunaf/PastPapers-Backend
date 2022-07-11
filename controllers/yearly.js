@@ -1,7 +1,8 @@
 /** @format */
 
-const annualData = require("../models/yearly");
+const { annualData } = require("../models/yearly");
 const path = require("path");
+const { getPdf, postPdf, updatePdf, deletePdf } = require("./pdf");
 // const cloudinary = require("../utils/cloudinary");
 
 const getYear = async (req, res) => {
@@ -38,10 +39,9 @@ const postYear = async (req, res) => {
       month: req.body.month,
       category: req.body.category,
       paper: req.body.paper,
-      pdf: req.file,
     });
-
-    res.send("Single file uploaded");
+    postPdf(paper._id, req.file);
+    res.send("file uploaded");
   } catch (error) {
     console.log("Error: " + error);
   }
@@ -55,8 +55,8 @@ const updateYear = async (req, res) => {
       month: req.body.month,
       category: req.body.category,
       paper: req.body.paper,
-      pdf: req.file,
     });
+    updatePdf(paper._id, req.file);
     res.send("Update");
   } catch (error) {
     console.log("Error: " + error);
@@ -65,6 +65,7 @@ const updateYear = async (req, res) => {
 const deleteYear = async (req, res) => {
   try {
     const paper = await annualData.findByIdAndDelete(req.params.id);
+    deletePdf(req.params.id);
     res.send("Delete");
   } catch (error) {
     console.log("Error: " + error);

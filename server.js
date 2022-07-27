@@ -4,6 +4,7 @@ const express = require("express");
 const dotenv = require("dotenv");
 const ConnectDB = require("./config/db");
 const AnnualRoutes = require("./routes/yearly");
+const O_TopicalRoutes = require("./routes/O-Topical");
 const cors = require("cors");
 
 dotenv.config({ path: "./config/.env" });
@@ -14,6 +15,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 app.use("/api/yearly/", AnnualRoutes);
+app.use("/api/topical/o-level", O_TopicalRoutes);
 app.use(express.static(__dirname));
 const port = process.env.PORT || config.get("port");
 app.listen(port, () => {

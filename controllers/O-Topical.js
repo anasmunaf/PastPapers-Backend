@@ -1,6 +1,7 @@
-import { OLevelTopicalData } from "../models/O-Topical";
+/** @format */
 
-const O_TopicalRoutes = require("../model/O-Topical");
+const { OLevelTopicalData } = require("../models/O-Topical");
+
 const cloudinary = require("../utils/cloudinary");
 
 async function getTopic(req, res) {
@@ -11,15 +12,12 @@ async function getTopic(req, res) {
 }
 
 async function postTopic(req, res) {
+  console.log("post", req.file);
   try {
-    const file = await cloudinary.uploader.upload(
-      req.file.path,
-      (err, result) => {
-        if (err) console.log("err: " + err);
-        else console.log(result);
-      }
-    );
-    console.log(file);
+    const file = await cloudinary.uploader.upload(req.file, (err, result) => {
+      if (err) console.log("err: " + err);
+      else console.log(result);
+    });
     // const topic = await OLevelTopicalData.create({
     //   subject: req.body.subject,
     //   year: req.body.year,
@@ -33,4 +31,4 @@ async function postTopic(req, res) {
   }
 }
 
-export { getTopic, postTopic };
+module.exports = { getTopic, postTopic };

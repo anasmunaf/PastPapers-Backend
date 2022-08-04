@@ -15,7 +15,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 app.use("/api/yearly/", AnnualRoutes);
-app.use("/api/topical/o-level", O_TopicalRoutes);
+app.use("/api/topical/o-level/", O_TopicalRoutes);
 app.use(express.static(__dirname));
 const port = process.env.PORT || config.get("port");
 app.listen(port, () => {

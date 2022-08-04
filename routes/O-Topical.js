@@ -2,17 +2,23 @@
 
 const express = require("express");
 const multer = require("multer");
-const { getTopic, postTopic } = require("../controllers/O-Topical");
+const {
+  getTopicById,
+  postTopic,
+  getTopic,
+} = require("../controllers/O-Topical");
 const O_TopicalRoutes = express.Router();
 const fileStorageEngine = require("../utils/multer");
 const upload = multer({ storage: fileStorageEngine });
 
-O_TopicalRoutes.route("/:subject")
-  .get(getTopic)
-  .post(upload.single("image"), postTopic);
-// O_TopicalRoutes.route("/:id")
-//   .get(getYearById)
-//   .put(upload.single("pdf"), updateYear)
-//   .delete(deleteYear);
-// O_TopicalRoutes.route("/pdf/:id").get(getPdfById);
+O_TopicalRoutes.route("/:subject/:topic")
+  .get(getTopicById)
+  .post(
+    upload.fields([
+      { name: "question", maxCount: 1 },
+      { name: "answer", maxCount: 1 },
+    ]),
+    postTopic
+  );
+O_TopicalRoutes.route("/").get(getTopic);
 module.exports = O_TopicalRoutes;

@@ -28,7 +28,7 @@ async function postTopic(req, res) {
   try {
     const urls = Object.values(req.files).map(async (file) => {
       const cloudData = await cloudinary.uploader.upload(
-        path.join(__dirname, "../upload/", file[0].filename),
+        path.resolve(__dirname, "../upload/", file[0].filename),
         (err, result) => {
           if (err) console.log("err: " + err);
           // else

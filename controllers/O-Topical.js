@@ -31,9 +31,9 @@ async function postTopic(req, res) {
         path.join(__dirname, "../upload/", file[0].filename),
         (err, result) => {
           if (err) console.log("err: " + err);
-          else
-            fs.unlinkSync(path.join(__dirname, "../upload/", file[0].filename));
-        }
+          // else
+          //   fs.unlinkSync(path.join(__dirname, "../upload/", file[0].filename));
+        },
       );
       console.log(__dirname);
       return cloudData.url;

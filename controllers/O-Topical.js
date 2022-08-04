@@ -48,7 +48,6 @@ async function postTopic(req, res) {
       question: await urls[0],
       answer: await urls[1],
     });
-    console.log(topic);
     res.send("file uploaded");
   } catch (error) {
     console.log("Error: " + error);

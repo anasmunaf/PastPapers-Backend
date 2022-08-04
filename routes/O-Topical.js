@@ -11,8 +11,9 @@ const O_TopicalRoutes = express.Router();
 const fileStorageEngine = require("../utils/multer");
 const upload = multer({ storage: fileStorageEngine });
 
-O_TopicalRoutes.route("/:subject/:topic")
-  .get(getTopicById)
+O_TopicalRoutes.route("/:subject/:topic").get(getTopicById);
+O_TopicalRoutes.route("/")
+  .get(getTopic)
   .post(
     upload.fields([
       { name: "question", maxCount: 1 },
@@ -20,5 +21,4 @@ O_TopicalRoutes.route("/:subject/:topic")
     ]),
     postTopic
   );
-O_TopicalRoutes.route("/").get(getTopic);
 module.exports = O_TopicalRoutes;
